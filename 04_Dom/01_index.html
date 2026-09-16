@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <title>DOM Practice</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+      }
+
+      button {
+        padding: 5px;
+      }
+
+      #box {
+        margin: 25px;
+        padding: 10px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title" class="heading">Hello World</h1>
+
+    <p id="text1" class="para">Learn DOM Manipulation</p>
+    <p id="text2" class="para">Learn DOM Manipulation in depth</p>
+    <p id="text3" class="para">Learn DOM Manipulation explanation</p>
+
+    <input id="name" type="text" placeholder="Enter name" />
+
+    <button id="btn" class="button">Click Me</button>
+
+    <ul id="list">
+      <li>Java</li>
+      <li>JavaScript</li>
+    </ul>
+
+    <div id="box">This is a box</div>
+
+    <script>
+      // getElementById
+      const id1 = document.getElementById("text3");
+      id1.style.color = "red";
+
+      // getElementByClassName
+      const c1 = document.getElementsByClassName("button");
+      const c1Arr = Array.from(c1);
+      c1Arr.forEach((e) => (e.textContent = "Click Here"));
+
+      // getElementByTagName
+      const t1 = document.getElementsByTagName("li");
+      t1[1].style.backgroundColor = "blue";
+
+      // QuerySelector
+      const qs1 = document.querySelector(".para");
+      // console.log(qs1.getAttribute("id")); // getAttribute
+
+      // QuerySelectorAll
+      const qs2 = document.querySelectorAll(".para");
+      // console.log(qs2);
+      qs2.forEach(
+        (e) => (
+          (e.style.backgroundColor = "yellow"),
+          (e.style.borderRadius = "30px")
+        ),
+      );
+
+      const qs3 = document.querySelector("#list");
+      // console.log(qs3);
+      qs3.setAttribute("class", "list1"); // setAttribute
+      qs3.removeAttribute("class"); // removeAttribute
+
+      const h2 = document.createElement("h2"); // createElement
+      h2.textContent = "Learning Javascript DOM";
+      const b = document.querySelector("body");
+      // b.appendChild(h2); // appendChild
+
+      const p1 = document.querySelector(".para");
+      p1.before("Hello Everyone"); // before
+      p1.after("Bye Everyone"); // after
+      // b.removeChild(p); // removeAhild
+    </script>
+  </body>
+</html>
