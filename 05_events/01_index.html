@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Events</title>
+</head>
+<body style="background-color: black;color: white;">
+    <h2>Amazing Flowers</h2>
+    <div>
+        <ul id="flowers">
+            <li><img width="200px" height="200px" id="phlox" src="https://images.pexels.com/photos/38524143/pexels-photo-38524143.jpeg" alt="Phlox"></li>
+            <li><img width="200px" height="200px" id="dahlia" src="https://images.pexels.com/photos/39428172/pexels-photo-39428172.jpeg" alt="Dahlia"></li>
+            <li><img width="200px" height="200px" id="aster" src="https://images.pexels.com/photos/38126808/pexels-photo-38126808.jpeg" alt="Aster"></li>
+            <li><img width="200px" height="200px" id="tulip" src="https://images.pexels.com/photos/11744126/pexels-photo-11744126.jpeg" alt="Tulip"></li>
+            <li><img width="200px" height="200px" id="jasmine" src="https://images.pexels.com/photos/54608/flower-jasmine-bush-white-54608.jpeg" alt="Jasmine"></li>
+            <li><img width="200px" height="200px" id="lavender" src="https://images.pexels.com/photos/34102717/pexels-photo-34102717.jpeg" alt="Lavender"></li>
+            <li><img width="200px" height="200px" id="lily" src="https://images.pexels.com/photos/38960726/pexels-photo-38960726.jpeg" alt="Lily"></li>
+            <li><img width="200px" height="200px" id="hibiscus" src="https://images.pexels.com/photos/39466670/pexels-photo-39466670.jpeg" alt="Hibiscus"></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    // const tulip = document.getElementById('tulip');
+    // tulip.onclick = function(){
+    //     alert('Tulip Flower');
+    // };
+
+    // capturing : top to bottom
+    // bubbling : bottom to top
+     document.getElementById('flowers').addEventListener('click',function(){
+        //alert('All flowers clicked');
+    });
+
+    document.getElementById('tulip').addEventListener('click',function(e){
+        // alert('Tulip flower clicked');
+        //e.stopPropagation(); // no bubbling occured 
+    });
+
+     document.getElementById('tulip').addEventListener('click',(e) => console.log(e),false);
+    
+    // preventDefault
+    document.getElementById('google').addEventListener('click',(e) => {
+        console.log('Google clicked');
+        e.preventDefault();
+    });
+
+    // remove items on click
+    document.querySelector('#flowers').addEventListener('click',(e) => {
+        // console.log(e.target.parentNode);
+        let removeLi = e.target.parentNode;
+        // removeLi.remove();
+        removeLi.parentNode.removeChild(removeLi);
+    },false);
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget
+    // clientX, clientY, screenX, screenY
+    // altKey, ctrlKey, shiftKey, keyCode
+</script>
+
+</html>
