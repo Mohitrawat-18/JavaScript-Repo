@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+</head>
+<body style="background-color: black;color: white;">
+    <h1>Random Colors</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <div class="project">
+        <div id="insert">
+            <div class="key">Press any Key and watch the magic</div>
+        </div>
+    </div>
+</body>
+<script>
+    // setTimeout()
+    // const sayHello = () => console.log("Hello everyone");
+
+    const changeText = () => {
+        document.querySelector('h1').innerHTML = "JS Async in depth";
+    };
+    // const st1 = setTimeout(changeText,3000);
+
+    // clearTimeout()
+    // document.querySelector('#stop').addEventListener('click',() => {
+    //     console.log('STOPPED');
+    //     clearTimeout(st1);
+    // });
+
+    //setInterval()
+    const sayDate = (str) => console.log(str,Date.now());
+    // const interval = setInterval(sayDate,1000,"Date");
+
+    // clearInterval()
+    // clearInterval(interval);
+
+    // 1 project
+    const randomColor = () => {
+        const hex = '0123456789ABCDEF';
+        let color = '#';
+        for(let i =0;i<6;i++){
+            color += hex[Math.floor(Math.random()*16)]
+        };
+        return color;
+    };
+
+    let intervalId;
+    const startChangingColor = () => {
+        if(!intervalId){
+            intervalId = setInterval(changeBgColor,1000);
+        }
+
+        function changeBgColor(){
+            document.body.style.backgroundColor = randomColor();
+        }
+    };
+
+    const stopChangingColor = () => {
+        clearInterval(intervalId);
+        intervalId = null;
+    };
+
+    document.querySelector('#start').addEventListener('click',startChangingColor);
+    document.querySelector('#stop').addEventListener('click',stopChangingColor);
+
+    // 2 project
+    const insert = document.getElementById('insert');
+    window.addEventListener('keydown',(e) => {
+        insert.innerHTML = `
+        <div class='color'>
+        <table>
+        <tr>
+            <th>Key</th>
+            <th>KeyCode</th>
+            <th>Code</th>
+        </tr>
+        <tr>
+            <td>${e.key === ' '?'Space':e.key}</td>
+            <td>${e.keyCode}</td>
+            <td>${e.code}</td>
+        </tr>
+        </table>
+        </div>
+        `;
+    });
+
+</script>
+</html>
